@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.bookstore.mapper.BookMapper" >
+    <!-- 根据分类id查询书的总数 -->
+    <select id="getTotalByCatalog" parameterType="Integer" resultType="Integer">
+  	select count(*) from book where catalogid=#{0}
+  </select>
+
+    <!-- 查询所有图书 -->
+    <select id="getNewBook" resultType="org.bookstore.po.Book">
+  	select * from book
+  </select>
+
+    <!-- 根据书名查询图书 -->
+    <select id="getBookByName" parameterType="String" resultType="org.bookstore.po.Book">
+  	select * from book where bookname like concat('%',#{0},'%')
+  </select>
+
+    <!-- 根据分类id查询图书 -->
+    <select id="selectBookByCatalogId" parameterType="Hashmap" resultType="org.bookstore.po.Book">
+  	select * from book where catalogid=#{catalogid} limit #{start,jdbcType=INTEGER},#{maxnumber,jdbcType=INTEGER}
+  </select>
+
+    <select id="getBookById" parameterType="Integer" resultType="org.bookstore.po.Book">
+  	select * from book where bookid=#{0}
+  </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bookstore.mapper.UserinfoMapper">
+    <!-- 保存用户信息 -->
+    <insert id="saveUser" parameterType="org.bookstore.po.Userinfo">
+		insert into userinfo(username,password,sex,age) values(#{username},#{password},#{sex},#{age})
+	</insert>
+
+    <!-- 根据姓名查询用户 -->
+    <select id="selectUserByName" resultType="org.bookstore.po.Userinfo" parameterType="String">
+		select * from userinfo where username=#{username}
+	</select>
+
+    <!-- 根据用户名和密码查询用户  -->
+    <select id="selectUserByNameAndPwd" resultType="org.bookstore.po.Userinfo" parameterType="String">
+		select * from userinfo where username=#{0} and password=#{1}
+	</select>
+</mapper>
