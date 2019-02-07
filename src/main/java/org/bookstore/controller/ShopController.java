@@ -52,7 +52,7 @@ public class ShopController {
         //把购物车放入Session中
         session.setAttribute("cart", cart);
 
-        modelAndView.setViewName("forward:/jsp/addToCart_success.jsp");
+        modelAndView.setViewName("addToCart_success");
         return modelAndView;
     }
 
@@ -65,7 +65,7 @@ public class ShopController {
         cart.updateCart(bookid, quantity);
         session.setAttribute("cart", cart);
 
-        modelAndView.setViewName("forward:/jsp/showCart.jsp");
+        modelAndView.setViewName("showCart");
         return modelAndView;
     }
 
@@ -74,7 +74,7 @@ public class ShopController {
         Userinfo user=(Userinfo)session.getAttribute("user");
         Cart cart=(Cart)session.getAttribute("cart");
         if(user==null || cart ==null)
-            return "forward:/jsp/login.jsp";			//如果没有登录返回登录界面
+            return "login.jsp";			//如果没有登录返回登录界面
         Orders order=new Orders();
         order.setOrderdate(new Date());
         order.setUser(user);
@@ -86,11 +86,11 @@ public class ShopController {
         }
         orderService.saveOrder(order);
         request.setAttribute("order", order);
-        return "forward:/jsp/checkout_success.jsp";
+        return "checkout_success";
     }
 
     @RequestMapping("/toIndex")
     public String toIndex() {
-        return "/jsp/index.jsp";
+        return "index";
     }
 }

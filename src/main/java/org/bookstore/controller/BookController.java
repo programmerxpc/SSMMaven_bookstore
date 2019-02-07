@@ -30,7 +30,7 @@ public class BookController {
 
         List<Catalog> list = catalogService.findAllCatalogname();//得到所有图书分类名
         modelAndView.addObject("catalogname", list);
-        modelAndView.setViewName("forward:/jsp/menu.jsp");
+        modelAndView.setViewName("menu");
         return modelAndView;
     }
 
@@ -40,7 +40,7 @@ public class BookController {
 
         List<Book> books = bookService.getNewBook();
         modelAndView.addObject("books", books);
-        modelAndView.setViewName("forward:/jsp/newBook_success.jsp");
+        modelAndView.setViewName("newBook_success");
         return modelAndView;
     }
 
@@ -50,7 +50,7 @@ public class BookController {
 
         List<Book> books = bookService.getBookByName(bookname);
         modelAndView.addObject("bookItems", books);
-        modelAndView.setViewName("forward:/jsp/searchBook_result.jsp");
+        modelAndView.setViewName("searchBook_result");
         return modelAndView;
     }
 
@@ -67,7 +67,7 @@ public class BookController {
         modelAndView.addObject("bookItems", books);
         modelAndView.addObject("pager", pager);
         modelAndView.addObject("catalogid", catalogid);
-        modelAndView.setViewName("forward:/jsp/browseBookPaging.jsp");
+        modelAndView.setViewName("browseBookPaging");
         return modelAndView;
     }
 }

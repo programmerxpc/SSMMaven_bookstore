@@ -26,12 +26,12 @@ public class UserController {
 
         if (i == 1) {//用户名已存在
             modelAndView.addObject("user", user);
-            modelAndView.setViewName("forward:/jsp/register_failure.jsp");
+            modelAndView.setViewName("register_failure");
             return modelAndView;
         }
 
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("forward:/jsp/register_success.jsp");
+        modelAndView.setViewName("register_success");
 
         return modelAndView;
     }
@@ -46,12 +46,12 @@ public class UserController {
         Userinfo user2 = userService.Login(username, password);
         if(user2 != null) {
             session.setAttribute("user", user2);
-            modelAndView.setViewName("redirect:/jsp/login_success.jsp");
+            modelAndView.setViewName("login_success");
             return modelAndView;
         }
 
         modelAndView.addObject("msg", "用户名或密码错误!");
-        modelAndView.setViewName("forward:/jsp/login.jsp");
+        modelAndView.setViewName("login");
         return modelAndView;
 //		System.out.println(user.getUsername());
 //		System.out.println(user.getPassword());
@@ -62,6 +62,6 @@ public class UserController {
     public String logout(HttpSession session) {
         session.removeAttribute("user");
 
-        return "redirect:/jsp/login.jsp";
+        return "login";
     }
 }
